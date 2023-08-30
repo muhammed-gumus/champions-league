@@ -5,45 +5,45 @@ import { toPng } from "html-to-image";
 
 const teams = [
   //1. grup
-  { name: "Manchester City", logo: "city.png", nation: "England" },
-  { name: "Sevilla", logo: "sevilla.png", nation: "Spain" },
-  { name: "Barcelona", logo: "barcelona.png", nation: "Spain" },
-  { name: "Napoli", logo: "napoli.png", nation: "Italy" },
+  { name: "Manchester City", logo: "city.png" },
+  { name: "Sevilla", logo: "sevilla.png" },
+  { name: "Barcelona", logo: "barcelona.png" },
+  { name: "Napoli", logo: "napoli.png" },
   //2. grup
-  { name: "Bayern Münih", logo: "bayern.png", nation: "Germany" },
-  { name: "PSG", logo: "psg.png", nation: "France" },
-  { name: "Benfica", logo: "benfica.png", nation: "Portugal" },
-  { name: "Feyenoord", logo: "feyenoord.png", nation: "Netherland" },
+  { name: "Bayern Münih", logo: "bayern.png" },
+  { name: "PSG", logo: "psg.png" },
+  { name: "Benfica", logo: "benfica.png" },
+  { name: "Feyenoord", logo: "feyenoord.png" },
   //3. grup
-  { name: "Real Madrid", logo: "real.png", nation: "Spain" },
-  { name: "Manchester United", logo: "united.png", nation: "England" },
-  { name: "Inter", logo: "inter.png", nation: "Italy" },
-  { name: "Dortmund", logo: "dortmund.png", nation: "Germany" },
+  { name: "Real Madrid", logo: "real.png" },
+  { name: "Manchester United", logo: "united.png" },
+  { name: "Inter", logo: "inter.png" },
+  { name: "Dortmund", logo: "dortmund.png" },
   //4. grup
-  { name: "Atletico Madrid", logo: "atletico.png", nation: "Spain" },
-  { name: "Leipzig", logo: "leipzig.png", nation: "Germany" },
-  { name: "Porto", logo: "porto.png", nation: "Portugal" },
-  { name: "Arsenal", logo: "arsenal.png", nation: "England" },
+  { name: "Atletico Madrid", logo: "atletico.png" },
+  { name: "Leipzig", logo: "leipzig.png" },
+  { name: "Porto", logo: "porto.png" },
+  { name: "Arsenal", logo: "arsenal.png" },
   //5. grup
-  { name: "Shakhtar Donetsk", logo: "donetsk.png", nation: "Ukraine" },
-  { name: "Salzburg", logo: "salzburg.png", nation: "Austria" },
-  { name: "Rangers", logo: "rangers.png", nation: "Scotland" },
-  { name: "Milan", logo: "milan.png", nation: "Italy" },
+  { name: "Shakhtar Donetsk", logo: "donetsk.png" },
+  { name: "Salzburg", logo: "salzburg.png" },
+  { name: "Rangers", logo: "rangers.png" },
+  { name: "Milan", logo: "milan.png" },
   //6. grup
-  { name: "Braga", logo: "braga.png", nation: "Portugal" },
-  { name: "Lazio", logo: "lazio.png", nation: "Italy" },
-  { name: "Kızılyıldız", logo: "kızılyıldız.png", nation: "Serbia" },
-  { name: "Kopenhag", logo: "kopenhag.png", nation: "Denmark" },
+  { name: "Braga", logo: "braga.png" },
+  { name: "Lazio", logo: "lazio.png" },
+  { name: "Kızılyıldız", logo: "kızılyıldız.png" },
+  { name: "Kopenhag", logo: "kopenhag.png" },
   //7.grup
-  { name: "Galatasaray", logo: "galatasaray.png", nation: "Turkey" },
-  { name: "Real Sociedad", logo: "sociedad.png", nation: "Spain" },
-  { name: "Young Boys", logo: "young.png", nation: "Switzerland" },
-  { name: "Celtic", logo: "celtic.png", nation: "Scotland" },
+  { name: "Galatasaray", logo: "galatasaray.png" },
+  { name: "Real Sociedad", logo: "sociedad.png" },
+  { name: "Young Boys", logo: "young.png" },
+  { name: "Celtic", logo: "celtic.png" },
   //8. grup
-  { name: "Newcastle United", logo: "newcastle.png", nation: "England" },
-  { name: "Union Berlin", logo: "berlin.png", nation: "Germany" },
-  { name: "AEK", logo: "aek.png", nation: "Greece" },
-  { name: "Lens", logo: "lens.png", nation: "France" },
+  { name: "Newcastle United", logo: "newcastle.png" },
+  { name: "Union Berlin", logo: "berlin.png" },
+  { name: "AEK", logo: "aek.png" },
+  { name: "Lens", logo: "lens.png" },
 ];
 
 const chunkArray = (array, chunkSize) => {
@@ -56,8 +56,11 @@ const chunkArray = (array, chunkSize) => {
 
 const shuffleArray = (array) => {
   const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
 
-  // Check for teams with the same nation and swap if necessary
   for (let i = 1; i < shuffledArray.length; i++) {
     if (shuffledArray[i].nation === shuffledArray[i - 1].nation) {
       [shuffledArray[i], shuffledArray[i - 1]] = [shuffledArray[i - 1], shuffledArray[i]];
@@ -66,7 +69,6 @@ const shuffleArray = (array) => {
 
   return shuffledArray;
 };
-
 
 const Index = () => {
   const [shuffledTeams, setShuffledTeams] = useState([]);
@@ -181,7 +183,7 @@ const Index = () => {
                           marginRight: "0.5rem",
                         }}
                       />
-                      <p>{team.nation}</p>
+                      <p>{team.name}</p>
                     </div>
                   ))}
                 </div>
