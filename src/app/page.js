@@ -59,6 +59,7 @@ const Index = () => {
       style={{
         display: "flex",
         justifyContent: "center",
+        flexDirection: "column",
         alignItems: "center",
         height: "100vh",
       }}
@@ -113,6 +114,25 @@ const Index = () => {
           </button>
         </Link>
       </div>
+      <footer
+        style={{
+          marginTop: "1rem",
+          textAlign: "center",
+          paddingBottom: "1rem",
+        }}
+      >
+        <p>
+          Visit my website:{" "}
+          <a
+            href="https://mami.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500"
+          >
+            mami.dev
+          </a>
+        </p>
+      </footer>
     </div>
   );
 };
