@@ -56,13 +56,14 @@ const chunkArray = (array, chunkSize) => {
 
 const shuffleArray = (array) => {
   const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
 
   for (let i = 1; i < shuffledArray.length; i++) {
     if (shuffledArray[i].nation === shuffledArray[i - 1].nation) {
-      [shuffledArray[i], shuffledArray[i - 1]] = [
-        shuffledArray[i - 1],
-        shuffledArray[i],
-      ];
+      [shuffledArray[i], shuffledArray[i - 1]] = [shuffledArray[i - 1], shuffledArray[i]];
     }
   }
 
