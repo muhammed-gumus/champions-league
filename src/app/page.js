@@ -61,7 +61,6 @@ const Index = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        margin: "1rem",
       }}
     >
       <div
@@ -109,7 +108,7 @@ const Index = () => {
           </div>
         ))}
         <Link href="/groups">
-          <button className="bg-white text-blue-500 border-none px-6 py-3 rounded-md cursor-pointer mt-6 text-lg font-semibold transition duration-300 hover:bg-blue-500 hover:text-white">
+          <button className="bg-white text-blue-500 border-none px-6 py-3 rounded-md cursor-pointer mt-6 text-lg font-semibold">
             Go to Groups
           </button>
         </Link>

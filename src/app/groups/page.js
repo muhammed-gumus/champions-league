@@ -77,22 +77,25 @@ const Index = () => {
 
   const groupLetters = "ABCDEFGH";
 
-  const handleTwitterShare = async () => {
+  const handleDownloadImage = async () => {
     try {
       const contentElement = contentRef.current;
-      console.log(contentElement);
 
+      // Generate an image from the content element using toPng function
       const dataUrl = await toPng(contentElement);
-      console.log(dataUrl);
 
-      const tweetContent = encodeURIComponent(
-        "Check out this football team grouping!"
-      );
-      const twitterUrl = `https://twitter.com/intent/tweet?text=${tweetContent}&url=${dataUrl}`;
+      // Create an anchor element with download attributes
+      const a = document.createElement("a");
+      a.href = dataUrl;
+      a.download = "team_grouping.png";
 
-      window.open(twitterUrl, "_blank");
+      // Trigger a click event on the anchor element
+      a.click();
+
+      // Clean up by removing the anchor element
+      a.remove();
     } catch (error) {
-      console.error("Error generating or sharing image:", error);
+      console.error("Error generating or downloading image:", error);
     }
   };
 
@@ -181,9 +184,34 @@ const Index = () => {
             ))}
           </div>
         ))}
-        <div className="flex flex-row m-2 gap-8">
-          <Link href="/">
-            <button className="flex flex-row gap-2 justify-center items-center bg-white text-blue-500 border-none px-4 py-3 rounded-md cursor-pointer mt-6 text-lg font-semibold ">
+        <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-row m-2 gap-8">
+            <Link href="/">
+              <button className="flex flex-row gap-2 justify-center items-center bg-white text-blue-500 border-none px-4 py-3 rounded-md cursor-pointer mt-6 text-lg font-semibold ">
+                <svg
+                  class="h-8 w-8 text-blue-500"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  {" "}
+                  <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                  <polyline points="11 7 6 12 11 17" />{" "}
+                  <polyline points="17 7 12 12 17 17" />
+                </svg>
+                Back to Home Page
+              </button>
+            </Link>
+
+            <button
+              onClick={handleDownloadImage}
+              className="flex flex-row-reverse gap-2 justify-center items-center bg-white text-blue-500 border-none px-4 py-3 rounded-md cursor-pointer mt-6 text-lg font-semibold "
+            >
               <svg
                 class="h-8 w-8 text-blue-500"
                 width="24"
@@ -197,34 +225,14 @@ const Index = () => {
               >
                 {" "}
                 <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                <polyline points="11 7 6 12 11 17" />{" "}
-                <polyline points="17 7 12 12 17 17" />
+                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />{" "}
+                <polyline points="7 11 12 16 17 11" />{" "}
+                <line x1="12" y1="4" x2="12" y2="16" />
               </svg>
-              Back to Home
+              Download the Draw
             </button>
-          </Link>
-
-          <button
-            onClick={handleTwitterShare}
-            className="flex flex-row-reverse gap-2 justify-center items-center bg-white text-blue-500 border-none px-4 py-3 rounded-md cursor-pointer mt-6 text-lg font-semibold "
-          >
-            <svg
-              class="h-8 w-8 text-blue-500"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              {" "}
-              <path stroke="none" d="M0 0h24v24H0z" />{" "}
-              <path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84 0 0 0 .497 -3.753C20.18 7.773 21.692 5.25 22 4.009z" />
-            </svg>
-            Share to Twitter
-          </button>
+          </div>
+          <p>Refresh the page to change the matches!</p>
         </div>
       </div>
     </div>
